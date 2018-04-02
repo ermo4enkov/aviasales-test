@@ -1,0 +1,36 @@
+{
+  "name": "aviasales-app",
+  "version": "0.1.0",
+  "dependencies": {
+    "babel-eslint": "^8.2.2",
+    "material-ui": "^0.20.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1"
+  },
+  "repository": "git+https://github.com/ermo4enkov/aviasales-test.git",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "styled-components": "^3.2.3"
+  },
+  "bugs": {
+    "url": "https://github.com/ermo4enkov/aviasales-test/issues"
+  },
+  "homepage": "https://github.com/ermo4enkov/aviasales-test/#readme",
+  "main": "index.js",
+  "author": "Roman Ermochenkov",
+  "license": "ISC",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app)."
+}
