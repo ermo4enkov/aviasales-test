@@ -5,7 +5,6 @@
   width: 566px;
   height: 161px;
   display: flex;
-  justify-content: space-between;
   padding: 0px;
   margin-bottom: 20px;
 }
@@ -13,14 +12,34 @@
 .card__pay {
   border-right: 1px solid #eceff1;
   padding: 25px 20px;
+  width: auto;
 }
 
 .card__info {
   padding: 25px 20px 25px 27px;
+  flex-grow: 1;
+}
+
+.card__info:after {
+  content: '';
+  display: table;
+  clear: both;
 }
 
 .card__logo {
   display: block;
   margin: 0 auto;
   margin-bottom: 10px;
+}
+
+.card__departure {
+  float: left;
+  display: block;
+  text-align: left;
+}
+
+.card__destination {
+  float: right;
+  display: block;
+  text-align: right;
 }
