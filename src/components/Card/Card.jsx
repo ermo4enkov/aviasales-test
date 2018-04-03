@@ -26,20 +26,20 @@ export class Card extends Component {
         </div>
         <div className="card__info">
           <div className="card__departure">
-            <div>{departure_time}</div>
-            <div>
+            <div className="card__time">{departure_time}</div>
+            <div className="card__address">
               {origin},
               {origin_name}
             </div>
-            <div>{departure_date}</div>
+            <div className="card__date">{departure_date}</div>
           </div>
           <div className="card__destination">
-            <div>{arrival_time}</div>
-            <div>
+            <div className="card__time">{arrival_time}</div>
+            <div className="card__address">
               {destination},
               {destination_name}
             </div>
-            <div>{arrival_date}</div>
+            <div className="card__date">{arrival_date}</div>
           </div>
         </div>
       </div>
