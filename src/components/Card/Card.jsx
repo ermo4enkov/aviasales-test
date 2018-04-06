@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from '../../components/Button';
 import './Card.css';
 import flyLogo from '../../assets/img/fly_logo.svg';
+import route from '../../assets/img/route.svg';
 
 export class Card extends Component {
   render() {
@@ -32,12 +33,14 @@ export class Card extends Component {
               {origin_name}
             </div>
             <div className="card__date">{departure_date}</div>
+            <img className="route-logo" src={route} alt=""/>
           </div>
           <div className="card__destination">
+            {stops? <div className="stops">{stops} пересадк{+stops > 1? `и`: `а`}</div>: null} 
             <div className="card__time">{arrival_time}</div>
             <div className="card__address">
-              {destination},
-              {destination_name}
+              {destination_name},
+              {destination}
             </div>
             <div className="card__date">{arrival_date}</div>
           </div>
