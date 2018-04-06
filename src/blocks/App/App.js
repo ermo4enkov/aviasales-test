@@ -8,8 +8,8 @@ import Filters from '../../../src/components/Filters';
 import CardsList from '../CardsList';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       tickets: null,
     };
@@ -17,20 +17,26 @@ class App extends Component {
 
   componentDidMount() {
     request('tickets.json').then(data => {
+      this.initialData = JSON.parse(data);
       this.setState({
-        tickets: JSON.parse(data),
+        tickets: this.initialData
       });
     });
   }
 
+  updateData(config) {
+    this.setState(config);
+  }
+
   render() {
     const { tickets } = this.state;
+
     return (
       <MuiThemeProvider>
         <div className="App">
           <img src={logo} alt="logo" className="App-logo" />
           <div className="container">
-            <Filters />
+            <Filters update={this.updateData.bind(this)} tickets={tickets}/>
             <CardsList tickets={tickets} />
           </div>
         </div>

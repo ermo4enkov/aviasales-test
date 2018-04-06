@@ -22,7 +22,6 @@ class CardsList extends Component {
   render() {
     const List = this.state.ticketsList.tickets
       ? this.state.ticketsList.tickets.map((item, index) => {
-          console.log(item);
           return (
             <Card
               key={index}
