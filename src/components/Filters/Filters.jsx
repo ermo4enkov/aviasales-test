@@ -5,10 +5,24 @@ import './Filters.css';
 export class Filters extends Component{
     constructor(){
         super();
+
+        this.state = {
+            valueList: null
+        }
     }
 
+    valueArr = [];
+
     showMeCheck = (e) =>{        
-        const value = e.target.value.toLowerCase();
+        const value = e.target.value;
+
+        const checked = e.target.checked;
+
+        checked? this.valueArr.push(value): this.valueArr = this.valueArr.filter(item => item != value);
+
+        this.setState({
+            valueList: this.valueArr
+        });
 
         const data = this.props.tickets;
         const arr = data.filter(item => item['stops'] == value);
