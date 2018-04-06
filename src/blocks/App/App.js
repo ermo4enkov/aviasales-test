@@ -19,13 +19,14 @@ class App extends Component {
     request('tickets.json').then(data => {
       this.initialData = JSON.parse(data);
       this.setState({
-        tickets: this.initialData
+        tickets: this.initialData['tickets']
       });
     });
   }
 
   updateData(config) {
     this.setState(config);
+    console.log(this.state)
   }
 
   render() {

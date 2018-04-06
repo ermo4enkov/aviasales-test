@@ -10,7 +10,7 @@ export class Filters extends Component{
     showMeCheck = (e) =>{        
         const value = e.target.value.toLowerCase();
 
-        const data = this.props.tickets['tickets'];
+        const data = this.props.tickets;
         const arr = data.filter(item => item['stops'] == value);
 
         this.props.update({

@@ -11,17 +11,18 @@ class CardsList extends Component {
 
   static getDerivedStateFromProps(props, prevState) {
     const tickets = props.tickets;
-    if (!props.tickets) {
+    if (!tickets) {
       return null;
     }
     return {
-      ticketsList: props.tickets,
+      ticketsList: tickets,
     };
   }
 
   render() {
-    const List = this.state.ticketsList.tickets
-      ? this.state.ticketsList.tickets.map((item, index) => {
+    
+    const List = this.state.ticketsList
+      ? this.state.ticketsList.map((item, index) => {
           return (
             <Card
               key={index}
