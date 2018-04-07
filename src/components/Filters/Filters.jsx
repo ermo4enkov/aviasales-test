@@ -5,10 +5,6 @@ import './Filters.css';
 export class Filters extends Component{
     constructor(){
         super();
-
-        this.state = {
-            valueList: null
-        }
     }
 
     valueArr = [];
@@ -20,16 +16,25 @@ export class Filters extends Component{
 
         checked? this.valueArr.push(value): this.valueArr = this.valueArr.filter(item => item != value);
 
-        this.setState({
-            valueList: this.valueArr
-        });
-
         const data = this.props.tickets;
-        const arr = data.filter(item => item['stops'] == value);
 
-        this.props.update({
-            tickets: arr
-        });
+        // const arr = data.filter(item => item['stops'] == value);
+
+        function multiFilter(array, filters) {
+            const filterKeys = Object.keys(filters);
+            return array.filter((item) => {
+                console.log(filterKeys)
+              // dynamically validate all filter criteria
+              return filterKeys.every(key => !!~filters[key].indexOf(item.stops));
+            });
+        };
+
+        let arr = multiFilter(data, this.valueArr);
+
+        console.log(arr);
+        // this.props.update({
+        //     tickets: arr
+        // });
     }
 
     render(){
