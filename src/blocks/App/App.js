@@ -26,18 +26,18 @@ class App extends Component {
 
   updateData(config) {
     this.setState(config);
-    console.log(this.state)
   }
 
   render() {
     const { tickets } = this.state;
+    const initialData = this.initialData;
 
     return (
       <MuiThemeProvider>
         <div className="App">
           <img src={logo} alt="logo" className="App-logo" />
           <div className="container">
-            <Filters update={this.updateData.bind(this)} tickets={tickets}/>
+            <Filters update={this.updateData.bind(this)} tickets={tickets} initialData={initialData}/>
             <CardsList tickets={tickets} />
           </div>
         </div>

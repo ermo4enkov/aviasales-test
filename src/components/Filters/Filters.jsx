@@ -5,40 +5,33 @@ import './Filters.css';
 export class Filters extends Component{
     constructor(){
         super();
+
+        this.state = {
+            ticketsColl: null
+        }
     }
 
-    valueArr = [];
+    
 
     showMeCheck = (e) =>{        
         const value = e.target.value;
 
         const checked = e.target.checked;
+        // let valueArr = [];
+        // checked? valueArr.push(value): valueArr = valueArr.filter(item => item != value);
 
-        checked? this.valueArr.push(value): this.valueArr = this.valueArr.filter(item => item != value);
+        const data = this.props.initialData.tickets;
 
-        const data = this.props.tickets;
+        const filterData = data.filter(item => item['stops'] == value);
 
-        // const arr = data.filter(item => item['stops'] == value);
-
-        function multiFilter(array, filters) {
-            const filterKeys = Object.keys(filters);
-            return array.filter((item) => {
-                console.log(filterKeys)
-              // dynamically validate all filter criteria
-              return filterKeys.every(key => !!~filters[key].indexOf(item.stops));
-            });
-        };
-
-        let arr = multiFilter(data, this.valueArr);
-
-        console.log(arr);
-        // this.props.update({
-        //     tickets: arr
-        // });
+        this.props.update({
+            tickets: filterData
+        });
     }
 
     render(){
-        const {tickets} = this.props;
+        const {tickets, initialData} = this.props;
+
 
         return (
             <div className="filters">
