@@ -42,7 +42,7 @@ export class Filters extends Component{
 
     checkAll = (e) => {
         const checked = e.target.checked;
-        
+
         checked? this.setState({
             checkBoxAll: true,
             checkBox0: true,
@@ -51,14 +51,22 @@ export class Filters extends Component{
             checkBox3: true,
         }): this.setState({
             checkBoxAll: false,
-            checkBox0: false,
+            checkBox0: true,
             checkBox1: false,
             checkBox2: false,
             checkBox3: false,
         });  
     }
 
+    checkAllChecks = () => {
+        const state = this.state;
+        let arr = Object.values(state)
+        arr.forEach(item => console.log(item));
+    }
+
     render(){
+
+        this.checkAllChecks();    
 
         return (
             <div className="filters">
@@ -75,7 +83,7 @@ export class Filters extends Component{
                     onCheck={this.showMeCheck.bind(this)}
                     value="0"
                     name="checkBox0"
-                    defaultChecked={this.state.checkBox1}
+                    defaultChecked={this.state.checkBox0}
                 />
                 <Checkbox
                     label="1 пересадка"
