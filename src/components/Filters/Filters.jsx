@@ -24,19 +24,19 @@ export class Filters extends Component{
         const data = this.props.initialData.tickets;
         const tickets = this.props.tickets
 
+        this.setState({ [name]: checked });
+
         if(checked) {
             const filterData = data.filter(item => item['stops'] == value);
             filterData.forEach(item => tickets.push(item));
             this.props.update({
                 tickets: tickets
-            });
-            this.setState({name: true})
+            });  
         } else {
             const filterData = tickets.filter(item => item['stops'] != value);
             this.props.update({
                 tickets: filterData
             });
-            this.setState({name: false})
         }
     }
 
@@ -51,17 +51,15 @@ export class Filters extends Component{
             checkBox3: true,
         }): this.setState({
             checkBoxAll: false,
-            checkBox0: true,
-            checkBox1: false,
-            checkBox2: false,
-            checkBox3: false,
-        });  
+        })  
     }
 
     checkAllChecks = () => {
         const state = this.state;
         let arr = Object.values(state)
         arr.forEach(item => console.log(item));
+
+        console.log(this.state)
     }
 
     render(){
