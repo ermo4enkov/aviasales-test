@@ -43,16 +43,28 @@ export class Filters extends Component{
 
     setCheckAll = (e) => {
         const checked = e.target.checked;
+        const data = this.props.initialData.tickets;
 
-        checked? this.setState({
-            checkBoxAll: true,
-            checkBox0: true,
-            checkBox1: true,
-            checkBox2: true,
-            checkBox3: true,
-        }): this.setState({
-            checkBoxAll: false,
-        })  
+        if (checked) {
+            
+            this.setState({
+                checkBoxAll: true,
+                checkBox0: true,
+                checkBox1: true,
+                checkBox2: true,
+                checkBox3: true,
+            })
+            
+            this.props.update({
+                tickets: data
+            });  
+        } else {
+            this.setState({
+                checkBoxAll: false,
+            });
+        }
+        
+        
     }
 
 
@@ -65,35 +77,35 @@ export class Filters extends Component{
                     value="all"
                     onCheck={this.setCheckAll.bind(this)}
                     name="checkBoxAll"
-                    defaultChecked={this.state.checkBoxAll}
+                    checked={this.state.checkBoxAll}
                 />
                 <Checkbox
                     label="Без пересадок"
                     onCheck={this.showMeCheck.bind(this)}
                     value="0"
                     name="checkBox0"
-                    defaultChecked={this.state.checkBox0}
+                   checked={this.state.checkBox0}
                 />
                 <Checkbox
                     label="1 пересадка"
                     onCheck={this.showMeCheck.bind(this)}
                     value="1"
                     name="checkBox1"
-                    defaultChecked={this.state.checkBox1}
+                    checked={this.state.checkBox1}
                 />
                 <Checkbox
                     label="2 пересадки"
                     onCheck={this.showMeCheck.bind(this)}
                     value="2"
                     name="checkBox2"
-                    defaultChecked={this.state.checkBox2}
+                    checked={this.state.checkBox2}
                 />
                 <Checkbox
                     label="3 пересадки"
                     onCheck={this.showMeCheck.bind(this)}
                     value="3"
                     name="checkBox3"
-                    defaultChecked={this.state.checkBox3}
+                    checked={this.state.checkBox3}
                 />
             </div>
         )
