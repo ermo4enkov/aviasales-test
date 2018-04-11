@@ -37,10 +37,11 @@ export class Filters extends Component{
             this.props.update({
                 tickets: filterData
             });
+            this.setState({checkBoxAll:false})
         }
     }
 
-    checkAll = (e) => {
+    setCheckAll = (e) => {
         const checked = e.target.checked;
 
         checked? this.setState({
@@ -54,25 +55,15 @@ export class Filters extends Component{
         })  
     }
 
-    checkAllChecks = () => {
-        const state = this.state;
-        let arr = Object.values(state)
-        arr.forEach(item => console.log(item));
-
-        console.log(this.state)
-    }
 
     render(){
-
-        this.checkAllChecks();    
-
         return (
             <div className="filters">
                 <div className="filters__title">КОЛИЧЕСТВО ПЕРЕСАДОК</div>
                 <Checkbox
                     label="Все"
                     value="all"
-                    onCheck={this.checkAll.bind(this)}
+                    onCheck={this.setCheckAll.bind(this)}
                     name="checkBoxAll"
                     defaultChecked={this.state.checkBoxAll}
                 />
