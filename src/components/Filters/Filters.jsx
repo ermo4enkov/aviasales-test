@@ -22,7 +22,7 @@ export class Filters extends Component{
         const checked = e.target.checked;
         const name = e.target.name;
         const data = this.props.initialData.tickets;
-        const tickets = this.props.tickets
+        const tickets = this.props.tickets.sort(item => item['stops']);
 
         this.setState({ [name]: checked });
 
@@ -64,9 +64,7 @@ export class Filters extends Component{
             });
         }
         
-        
     }
-
 
     render(){
         return (
