@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       tickets: null,
     };
+    this.updateData = this.updateData.bind(this);
   }
 
   componentDidMount() {
@@ -37,7 +38,7 @@ class App extends Component {
         <div className="App">
           <img src={logo} alt="logo" className="App-logo" />
           <div className="container">
-            <Filters update={this.updateData.bind(this)} tickets={tickets} initialData={initialData}/>
+            <Filters update={this.updateData} tickets={tickets} initialData={initialData}/>
             <CardsList tickets={tickets} />
           </div>
         </div>
