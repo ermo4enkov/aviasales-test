@@ -19,15 +19,34 @@ export class Filters extends Component{
         this.showMeCheck = this.showMeCheck.bind(this);
     }
 
-    
+    checkStatusOfState(name){
+        // console.log(name)
+        // this.setState(function(prevState){
+        //     for (let key in ){
+        //         console.log(prevState[key])
+        //     }
+        // })
+    }
 
     showMeCheck = (e) =>{        
         const { value, checked, name } = e.target;
         const data = this.props.initialData.tickets;
         const tickets = this.props.tickets.sort(compareParams('stops'))
-        this.setState({ [name]: checked });
-    
-        if(checked) {
+        this.setState(function(){
+            let filtersState = [];
+            for(let key in this.state){
+                if(this.state[key] === false) filtersState.push(this.state[key])
+            }
+            if (filtersState.length < 4 ){
+                return { [name]: checked }
+            } else {
+                return false;
+            }
+        });
+        this.checkStatusOfState(name)
+
+        
+        if (checked) {
             const filterData = data.filter(item => item['stops'] == value);
             filterData.forEach(item => tickets.push(item));
             this.props.update({
@@ -66,6 +85,8 @@ export class Filters extends Component{
         }
         
     }
+
+    
 
     render(){
         return (
