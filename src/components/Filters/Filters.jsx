@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Checkbox from 'material-ui/Checkbox';
 import './Filters.css';
+import { compareParams } from '../../utils/utils';
 
 export class Filters extends Component{
     constructor(){
@@ -13,25 +14,25 @@ export class Filters extends Component{
             checkBox2: true,
             checkBox3: true,
         }
+
+        this.setCheckAll = this.setCheckAll.bind(this);
+        this.showMeCheck = this.showMeCheck.bind(this);
     }
 
     
 
     showMeCheck = (e) =>{        
-        const value = e.target.value;
-        const checked = e.target.checked;
-        const name = e.target.name;
+        const { value, checked, name } = e.target;
         const data = this.props.initialData.tickets;
-        const tickets = this.props.tickets.sort(item => item['stops']);
-
+        const tickets = this.props.tickets.sort(compareParams('stops'))
         this.setState({ [name]: checked });
-
+    
         if(checked) {
             const filterData = data.filter(item => item['stops'] == value);
             filterData.forEach(item => tickets.push(item));
             this.props.update({
                 tickets: tickets
-            });  
+            });
         } else {
             const filterData = tickets.filter(item => item['stops'] != value);
             this.props.update({
@@ -73,34 +74,34 @@ export class Filters extends Component{
                 <Checkbox
                     label="Все"
                     value="all"
-                    onCheck={this.setCheckAll.bind(this)}
+                    onCheck={this.setCheckAll}
                     name="checkBoxAll"
                     checked={this.state.checkBoxAll}
                 />
                 <Checkbox
                     label="Без пересадок"
-                    onCheck={this.showMeCheck.bind(this)}
+                    onCheck={this.showMeCheck}
                     value="0"
                     name="checkBox0"
-                   checked={this.state.checkBox0}
+                    checked={this.state.checkBox0}
                 />
                 <Checkbox
                     label="1 пересадка"
-                    onCheck={this.showMeCheck.bind(this)}
+                    onCheck={this.showMeCheck}
                     value="1"
                     name="checkBox1"
                     checked={this.state.checkBox1}
                 />
                 <Checkbox
                     label="2 пересадки"
-                    onCheck={this.showMeCheck.bind(this)}
+                    onCheck={this.showMeCheck}
                     value="2"
                     name="checkBox2"
                     checked={this.state.checkBox2}
                 />
                 <Checkbox
                     label="3 пересадки"
-                    onCheck={this.showMeCheck.bind(this)}
+                    onCheck={this.showMeCheck}
                     value="3"
                     name="checkBox3"
                     checked={this.state.checkBox3}
