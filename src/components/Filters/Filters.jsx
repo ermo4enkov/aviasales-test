@@ -8,43 +8,25 @@ export class Filters extends Component{
         super();
 
         this.state = {
-            checkBoxAll: true,
-            checkBox0: true,
+            checkBoxAll: false,
+            checkBox0: false,
             checkBox1: true,
-            checkBox2: true,
-            checkBox3: true,
+            checkBox2: false,
+            checkBox3: false,
         }
 
         this.setCheckAll = this.setCheckAll.bind(this);
         this.showMeCheck = this.showMeCheck.bind(this);
     }
 
-    checkStatusOfState(name){
-        // console.log(name)
-        // this.setState(function(prevState){
-        //     for (let key in ){
-        //         console.log(prevState[key])
-        //     }
-        // })
-    }
-
     showMeCheck = (e) =>{        
         const { value, checked, name } = e.target;
         const data = this.props.initialData.tickets;
         const tickets = this.props.tickets.sort(compareParams('stops'))
-        this.setState(function(){
-            let filtersState = [];
-            for(let key in this.state){
-                if(this.state[key] === false) filtersState.push(this.state[key])
-            }
-            if (filtersState.length < 4 ){
-                return { [name]: checked }
-            } else {
-                return false;
-            }
+        
+        this.setState(function(prevState){
+            return { [name]: checked }
         });
-        this.checkStatusOfState(name)
-
         
         if (checked) {
             const filterData = data.filter(item => item['stops'] == value);
@@ -83,10 +65,17 @@ export class Filters extends Component{
                 checkBoxAll: false,
             });
         }
-        
     }
 
-    
+    // static getDerivedStateFromProps(props, state){
+    //     const data = this.props? this.props.initialData.tickets: [];
+    //     const tickets = this.props? this.props.tickets.sort(compareParams('stops')): null;
+    //     const filterData = data.filter(item => item['stops'] == 1);
+    //         filterData.forEach(item => tickets.push(item));
+    //         this.props.update({
+    //             tickets: tickets
+    //         });
+    // }
 
     render(){
         return (
