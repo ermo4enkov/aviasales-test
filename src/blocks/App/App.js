@@ -28,7 +28,7 @@ class App extends Component {
         error => console.log(`Rejected: ${error}`)
       )
       .catch(
-        error => console.log(error)
+        error => console.log(`Rejected: ${error}`)
       );
   }
 
