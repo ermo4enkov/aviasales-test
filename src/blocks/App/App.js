@@ -17,12 +17,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    request('tickets.json').then(data => {
-      this.initialData = JSON.parse(data);
-      this.setState({
-        tickets: this.initialData['tickets']
-      });
-    });
+    request('tickets.json').then(
+      response => {
+          this.initialData = JSON.parse(response)
+          this.setState({
+            tickets: this.initialData['tickets']
+          })
+      },
+      error => console.log(`Rejected: ${error}`)
+    );
   }
 
   updateData(config) {

@@ -1,16 +1,22 @@
-export default url => new Promise((success, fail) => {
-  const request = new XMLHttpRequest();
-  request.open('GET', url, true);
+export default url => 
+  new Promise((resolve, reject) => {
+    const request = new XMLHttpRequest();
+    request.open('GET', url, true);
 
-  request.addEventListener('load', () => {
-    request.status >= 200 && request.status < 400
-      ? success(request.responseText)
-      : fail(new Error(`Request Failed: ${request.statusText}`));
-  });
+    request.onload = function() {
+      if(this.status == 200){
+        resolve(this.response)
+      } 
+      else {
+        let error = new Error(this.statusText);
+        error.code = this.status;
+        reject(error)
+      }
+    }
 
-  request.addEventListener('error', () => {
-    fail(new Error('Network Error'));
-  });
+    request.onerror = () => {
+      reject(new Error("request error"))
+    };
 
-  request.send();
+    request.send();
 });
