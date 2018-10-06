@@ -43,13 +43,14 @@ export class Filters extends Component{
         } else {
             const differentFilterData = InitialDataTickets.filter(item => item['stops'] !== +value);
             const filteredRes = filteredTickets.filter(f => differentFilterData.includes(f));
-            this.setState({filteredTickets: [...filteredRes]});
             this.props.update({
-                tickets: this.state.filteredTickets
+                tickets: filteredRes
             });
-        }
-
-        
+            this.setState({filteredTickets: [...filteredRes]});
+            this.setState({
+                checkBoxAll: false,
+            });
+        } 
     }
 
     setCheckAll = (e) => {

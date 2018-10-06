@@ -16,11 +16,11 @@ class CardsList extends Component {
     if (!tickets) {
       return null;
     }
-    // if (prevState.ticketsList.length === 0) {
-    //   return{
-    //     ticketsList: tickets.filter(item => item['stops'] === 1)
-    //   }
-    // }
+    if (prevState.ticketsList.length === 0) {
+      return{
+        ticketsList: tickets.filter(item => item['stops'] === 1)
+      }
+    }
     return {
       ticketsList: tickets,
     };
