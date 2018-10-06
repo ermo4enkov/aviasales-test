@@ -3,9 +3,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import request from '../../utils/request';
 import logo from '../../logo.svg';
 import './App.css';
-import Button from '../../../src/components/Button';
 import Filters from '../../../src/components/Filters';
 import CardsList from '../CardsList';
+import { compareParams } from '../../utils/utils';
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class App extends Component {
         response => {
           this.initialData = JSON.parse(response)
           this.setState({
-            tickets: this.initialData['tickets']
+            tickets: this.initialData['tickets'].sort(compareParams('stops'))
           })
         },
         error => console.log(`Rejected: ${error}`)

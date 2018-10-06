@@ -67,16 +67,6 @@ export class Filters extends Component{
         }
     }
 
-    // static getDerivedStateFromProps(props, state){
-    //     const data = this.props? this.props.initialData.tickets: [];
-    //     const tickets = this.props? this.props.tickets.sort(compareParams('stops')): null;
-    //     const filterData = data.filter(item => item['stops'] == 1);
-    //         filterData.forEach(item => tickets.push(item));
-    //         this.props.update({
-    //             tickets: tickets
-    //         });
-    // }
-
     render(){
         return (
             <div className="filters">
