@@ -16,7 +16,7 @@ class CardsList extends Component {
     if (!tickets) {
       return null;
     }
-    // if(prevState.ticketsList.length === 0){
+    // if (prevState.ticketsList.length === 0) {
     //   return{
     //     ticketsList: tickets.filter(item => item['stops'] === 1)
     //   }
@@ -30,10 +30,8 @@ class CardsList extends Component {
     return <div>{this.showFilterdList()}</div>;
   }
 
-  
-
   showFilterdList(){
-    const sortedList = this.state.ticketsList ? this.state.ticketsList.map((item, index) => {
+    const sortedList = this.state.ticketsList ? this.state.ticketsList.sort(compareParams('stops')).map((item, index) => {
       return (
         <Card
           key={index}

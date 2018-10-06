@@ -10,9 +10,10 @@ export class Filters extends Component{
         this.state = {
             checkBoxAll: false,
             checkBox0: false,
-            checkBox1: true,
+            checkBox1: false,
             checkBox2: false,
             checkBox3: false,
+            filteredTickets: [],
         }
 
         this.setCheckAll = this.setCheckAll.bind(this);
@@ -21,31 +22,39 @@ export class Filters extends Component{
 
     showMeCheck = (e) =>{        
         const { value, checked, name } = e.target;
-        const data = this.props.initialData.tickets;
-        const tickets = this.props.tickets.sort(compareParams('stops'))
+        const InitialDataTickets = this.props.initialData.tickets.sort(compareParams('stops'));
         
         this.setState(function(prevState){
             return { [name]: checked }
         });
-        
+
+        const {filteredTickets} = this.state;
+
         if (checked) {
-            const filterData = data.filter(item => item['stops'] == value);
-            filterData.forEach(item => tickets.push(item));
+            const equalFilterData = InitialDataTickets.filter(item => item['stops'] === +value);
+            equalFilterData.forEach(item => {
+                this.setState(function(){
+                    return filteredTickets.push(item)
+                });
+            });
             this.props.update({
-                tickets: tickets
+                tickets: this.state.filteredTickets
             });
         } else {
-            const filterData = tickets.filter(item => item['stops'] != value);
+            const differentFilterData = InitialDataTickets.filter(item => item['stops'] !== +value);
+            const filteredRes = filteredTickets.filter(f => differentFilterData.includes(f));
+            this.setState({filteredTickets: [...filteredRes]});
             this.props.update({
-                tickets: filterData
+                tickets: this.state.filteredTickets
             });
-            this.setState({checkBoxAll:false})
         }
+
+        
     }
 
     setCheckAll = (e) => {
         const checked = e.target.checked;
-        const data = this.props.initialData.tickets;
+        const InitialDataTickets = this.props.initialData.tickets;
 
         if (checked) {
             
@@ -58,7 +67,7 @@ export class Filters extends Component{
             })
             
             this.props.update({
-                tickets: data
+                tickets: InitialDataTickets
             });  
         } else {
             this.setState({
