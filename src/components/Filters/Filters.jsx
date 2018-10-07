@@ -10,7 +10,7 @@ export class Filters extends Component{
         this.state = {
             checkBoxAll: false,
             checkBox0: false,
-            checkBox1: false,
+            checkBox1: true,
             checkBox2: false,
             checkBox3: false,
             filteredTickets: [],
@@ -77,6 +77,22 @@ export class Filters extends Component{
         }
     }
 
+    componentDidUpdate(prevProps){
+        if(prevProps.tickets === null && this.props.tickets.length === 10){
+            const InitialDataTickets = this.props.initialData.tickets.sort(compareParams('stops'));
+            const {filteredTickets} = this.state;
+            const equalFilterData = InitialDataTickets.filter(item => item['stops'] === 1);
+            equalFilterData.forEach(item => {
+                this.setState(function(){
+                    return filteredTickets.push(item)
+                });
+            });
+            this.props.update({
+                tickets: this.state.filteredTickets
+            });
+        }
+    }
+
     render(){
         return (
             <div className="filters">
@@ -122,6 +138,3 @@ export class Filters extends Component{
 }
 
 export default Filters;
-
-
-
