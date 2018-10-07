@@ -4,8 +4,8 @@ import './Filters.css';
 import { compareParams } from '../../utils/utils';
 
 export class Filters extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
 
         this.state = {
             checkBoxAll: false,
@@ -14,7 +14,6 @@ export class Filters extends Component{
             checkBox2: false,
             checkBox3: false,
             filteredTickets: [],
-            count: 0,
         }
 
         this.setCheckAll = this.setCheckAll.bind(this);
@@ -66,6 +65,7 @@ export class Filters extends Component{
                 checkBox1: true,
                 checkBox2: true,
                 checkBox3: true,
+                filteredTickets: InitialDataTickets,
             })
             
             this.props.update({
