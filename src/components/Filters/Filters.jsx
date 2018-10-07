@@ -14,6 +14,7 @@ export class Filters extends Component{
             checkBox2: false,
             checkBox3: false,
             filteredTickets: [],
+            count: 0,
         }
 
         this.setCheckAll = this.setCheckAll.bind(this);
@@ -77,7 +78,8 @@ export class Filters extends Component{
         }
     }
 
-    componentDidUpdate(prevProps){
+
+    componentDidUpdate(prevProps){    
         if(prevProps.tickets === null && this.props.tickets.length === 10){
             const InitialDataTickets = this.props.initialData.tickets.sort(compareParams('stops'));
             const {filteredTickets} = this.state;

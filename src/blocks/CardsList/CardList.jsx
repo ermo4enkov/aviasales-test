@@ -1,37 +1,14 @@
 import React, { Component } from 'react';
 import Card from '../../../src/components/Card';
-import { list } from 'postcss';
 import { compareParams } from '../../utils/utils';
 
 class CardsList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      ticketsList: [],
-    };
-  }
-
-  static getDerivedStateFromProps(props, prevState) {
-    const tickets = props.tickets;
-    if (!tickets) {
-      return null;
-    }
-    if (prevState.ticketsList.length === 0) {
-      return{
-        ticketsList: tickets.filter(item => item['stops'] === 1)
-      }
-    }
-    return {
-      ticketsList: tickets,
-    };
-  }
-
   render() {
     return <div>{this.showFilterdList()}</div>;
   }
 
   showFilterdList(){
-    const sortedList = this.state.ticketsList ? this.state.ticketsList.sort(compareParams('stops')).map((item, index) => {
+    const sortedList = this.props.tickets ? this.props.tickets.sort(compareParams('stops')).map((item, index) => {
       return (
         <Card
           key={index}
